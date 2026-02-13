@@ -2,7 +2,7 @@
 
 The aim of this practical is to familiarize yourself with JavaScript object literals and refresh your memory of JavaScript classes. 
 
-Stage 1 is quick and easy. Stage 2, however, is much more challenging and draws heavily on your existing programming knowledge from prior modules. 
+Stage 1 is quick and easy. Stage 2 is much more challenging and draws heavily on your existing programming knowledge from prior modules. 
 
 ## Stage 1: Object literals and constructor functions
 This stage is basic and focuses on the syntax of creating objects and classes. If you're comfortable with the syntax, jump ahead to stage 2, which is intended to stretch your JavaScript skills.
@@ -24,31 +24,59 @@ Use `console.log()` to print each address to the browser console. Click the arro
 
 Also make sure you know how to access individual properties of an address e.g. the postcode.
 
-### Exercise 1.2: Using an object constructor function
+Here is a reminder of object literal syntax and usage:
+```
+let myObj = {
+    property1: "value",
+    property2: "another value"
+}
+
+// Use dot notation to access values e.g.
+myObj.property1
+```
+
+### Exercise 1.2: Writing a class
 Continue working in the same file. Write your code for this exercise below the existing code (don't delete your work).
 
-Design an object constructor function that will make it easier to create address objects. 
-
-Try using the constructor function to create the same addresses you used in the previous exercise. Again, print them to the console and make sure you know how to access their properties.
-
-### Exercise 1.3: Writing a class
-Continue working in the same file. Write your code for this exercise below the existing code (don't delete your work).
-
-This time, create a class to represent address objects. Your class will need a different name than the function in the last exercise. 
+This time, create a class to represent address objects. 
 
 Use your class to create the same addresses you used in the previous exercise. Again, print them to the console and make sure you know how to access their properties.
+
+Here is a reminder of basic class structure and usage:
+```
+class MyClass {
+    publicProperty1;
+    publicProperty2;
+    #privateProperty;
+
+    constructor(a, b, c) {
+        this.publicProperty1 = a;
+        this.publicProperty2 = b;
+        this.#privateProperty = c;
+    }
+}
+
+/*
+To create an instance of a class, use the new keyword and pass in any expected values
+*/
+
+let myObj = new Class(1, 2, 3);
+
+// Access public properties using dot notation:
+myObj.publicProperty1;
+```
 
 ## Stage 2: Working with data and form inputs
 This stage is hard! It will likely take you more time than we have in practical. At a minimum, aim to complete 2.1. 
 
 ### Exercise 2.1: Changing Themes
-Web applications sometimes allow users to change themes, where a theme is a preferred colour scheme, fonts etc. For this exercise, you will write some JavaScript to enable a user to select from a collection of pre-defined themes. Watch the video illustrating the behaviour before beginning. The video is in the video-output folder in this repo.
+Web applications sometimes allow users to change themes, where a theme is a preferred colour scheme, font etc. For this exercise, you will write some JavaScript to enable a user to select from a collection of pre-defined themes. Watch the video illustrating the behaviour before beginning. The video is in the video-output folder in this repo.
 
 Create a simple webpage that has some filler text e.g. a heading and a few paragraphs of [lorem ipsum](https://loremipsum.io/generator/).
 
 Create a JavaScript file and link it to your HTML file by adding a `<script>` element at the end of the `<body>` element.
 
-Using either object literals or an object constructor function, create objects that store properties for 3-5 different themes. At a minimum, each theme should have properties storing a background colour, a text colour, and a font family. 
+Using object literals, create objects that store properties for 3-5 different themes. At a minimum, each theme should have properties storing a background colour, a text colour, and a font family. 
 
 Here is a basic example of what an object might store:
 
@@ -64,19 +92,12 @@ Add radio buttons that allow the user to switch between your themes. When a new 
 
 For a reminder of radio buttons, look back at week 4, lecture and practical 2. For a reminder of how to change CSS style properties, look at week 4, lecture 1 (very last slide) and the sample code from that week. 
 
-**Object literal or object constructor function?**
-
-Either option works. Here are some points to think about:
-- Object constructor functions save you from repeating code. If all your themes store information about the same properties, an object constructor function is the better choice.
-- If each object will have completely different properties, then an object literal would be appropriate as using a constructor function won't provide any efficiency.
-- If your themes share some properties but also have some differences, an object constructor function may still be the best choice. Remember that JS allows you to add properties to individual objects after they are created.
-
 ### Exercise 2.2: Maths Tutor 
 Run maths-tutor/index.html using Live Preview. Then, watch the video of the completed application, which you can find in the output-videos folder. 
 
-The purpose of this webpage is to help school pupils to practice their addition, subtraction, multiplication, and division. At the moment, you're seeing placeholder text and behaviour but, if you take a look at main.js, you'll see that a lot of the JS has already been written. The only thing that's missing is a `Question` object (or class) that contains information and behaviour for a randomly generated maths question. 
+The purpose of this webpage is to help school pupils to practice their addition, subtraction, multiplication, and division. At the moment, you're seeing placeholder text and behaviour but, if you take a look at main.js, you'll see that a lot of the JS has already been written. The only thing that's missing is a `Question` class that contains information and behaviour for a randomly generated maths question. 
 
-**At the top of main.js, create a new object called `Question`** using any of the approaches shown in lecture: an object literal, an object constructor function, or a class. You will need to generate lots of `Questions`, so an object literal is not the recommended approach (although it can work). I used a class in my solution.
+**At the top of main.js, create a new object called `Question`** using a class. 
 
 Each `Question` should randomly generate a basic maths question with the format:
 
@@ -86,7 +107,13 @@ firstNumber operator secondNumber
 
 …where `firstNumber` and `secondNumber` are randomly generated integers between 1 and 10 (inclusive), and `operator` is a randomly selected arithmetic operator—one of +, -, *, or /.
 
-**You can decide what properties your Question object will need, but every Question must have the following methods,** which are called from the existing code:
+For example,
+```
+10 + 2
+```
+10 is the `firstNumber`. + is the `operator`. 2 is the `secondNumber`.
+
+**You can decide what properties your Question class will need, but every Question must have the following methods,** which are called from the existing code:
 
 - `getText()` – This method has no parameters. It returns a string with the format, "What is firstNumber operator secondNumber?" `firstNumber`, `operator`, and `secondNumber` should be replaced with the values randomly generated for the `Question`.
 - `checkAnswer(answer)` – This method checks if the user's answer is correct. The method should return true if the answer is correct, and false otherwise. The existing code handles getting the answer from the input box and passing it to the method when the user presses "Check Answer". Implementing this functionality is trickier than it first appears!
@@ -96,17 +123,17 @@ The JavaScript syntax needed for this exercise is quite simple, but you will nee
 
 #### Suggested steps
 
-1.	Create a basic object constructor function or class called `Question`. Don't worry about properties for now. Add the required methods and make sure they return *something* of the right type. The returned values don't have to be correct yet e.g. `getText()` can just return any string, rather than a random question. Check that the live preview shows the question text returned by `getText()` and that clicking "Check Answer" causes the string returned by `getFeedbackForAnswer()` to display. 
+1.	Create a basic class called `Question`. Don't worry about properties for now. Add the required methods and make sure they return *something* of the right type. The returned values don't have to be correct yet e.g. `getText()` can just return any string, rather than a random question. Check that the live preview shows the question text returned by `getText()` and that clicking "Check Answer" causes the string returned by `getFeedbackForAnswer()` to display. 
 
 2.	Figure out how to randomly generate integers. JavaScript doesn't provide a built-in function to do this. You will find [this resource from MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) helpful.
 
-3.	Use your solution to step 2 to generate two random integers between 1 and 10 (inclusive) in your `Question` object—one number will be the first number in the question text, the other will be the second number in the question text. You may want to store these integers as properties in your `Question` object.
+3.	Use your solution to step 2 to generate two random integers between 1 and 10 (inclusive) in your `Question` object—one number will be the first number in the question text, the other will be the second number in the question text. You may want to store these integers as properties in your `Question` class.
 
-4.	Figure out how to randomly choose an operator (+, -, *, or /). One approach is to put the operators into an array as strings, then use your solution to step 2 to randomly choose an index in the array. You may want to store the chosen operator as a property in your `Question` object.
+4.	Figure out how to randomly choose an operator (+, -, *, or /). One approach is to put the operators into an array as strings, then use your solution to step 2 to randomly choose an index in the array. You may want to store the chosen operator as a property in your `Question` class.
 
 5.	You should now be able to update `getText()` so that it returns the randomly generated question text in the format, "What is firstNumber operator secondNumber?"
 
-6.	Using the values randomly generated in steps 3 and 4, add some code that will work out the correct answer to the question. You will need to use a conditional (if statement or switch statement) to figure out the correct answer based on the chosen operator. You may want to store the correct answer as a property in your  `Question` object.
+6.	Using the values randomly generated in steps 3 and 4, add some code that will work out the correct answer to the question. You will need to use a conditional (if statement or switch statement) to figure out the correct answer based on the chosen operator. You may want to store the correct answer as a property in your  `Question` class.
 
 7.	Next, update `checkAnswer(answer)` so that it returns true if and only if `answer` is equal to the correct answer calculated in step 6. There are two key issues to tackle here: (1) `answer` is a string but the correct answer will be a number; and (2) comparing floats can be tricky (this comes into play when answering a division question). To address issue 1, you can convert a string to a number using [`parseFloat(stringToConvert)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseFloat). To address issue 2, you can try rounding each number to 2 decimal places (Google this!) or you can try checking if the difference between the two numbers is within a certain tolerance e.g. 0.01 (Google this too!).
 
