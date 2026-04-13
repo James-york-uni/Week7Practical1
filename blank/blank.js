@@ -1,3 +1,5 @@
+const savedChoice = localStorage.getItem("choice");
+
 let theme1 = {
     background: '#ffffff',
     textColour: '#000000',
@@ -22,9 +24,14 @@ let textColour = '#000000';
 let font = 'impact';
 let theme = 1;
 
+if (savedChoice) {
+    themes.value = savedChoice;
+}
+
 function themeChoice() {
-    const selectedTheme = themes.value;
-    switch(selectedTheme) {
+    const choice = themes.value;
+    localStorage.setItem("choice", choice);
+    switch(choice) {
         case "1":
             background = theme1.background;
             textColour = theme1.textColour;
@@ -53,7 +60,8 @@ function applyTheme() {
     document.body.style.fontFamily = font;
 }
 
-applyTheme();
 themes.addEventListener("change", applyTheme);
+applyTheme();
+
 
 console.log(background,textColour, font);
